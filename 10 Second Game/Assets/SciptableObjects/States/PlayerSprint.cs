@@ -32,7 +32,7 @@ namespace PlayerMovement
                 
 
             }
-
+            
             //SPRINT
             if (control.Sprinting)
             {
@@ -57,6 +57,18 @@ namespace PlayerMovement
             {
                 animator.SetBool("Slide", true);
             }
+            //SPRINT BOOST
+            if (control.sprintBoost)
+            {
+                speed = 10f;
+
+            }
+            else
+            {
+                speed = 6f;
+            }
+
+           
         }
 
         public override void OnExit(CharacterStateBase characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -78,6 +90,7 @@ namespace PlayerMovement
             }
             return false;
         }
+       
     }
 }
 

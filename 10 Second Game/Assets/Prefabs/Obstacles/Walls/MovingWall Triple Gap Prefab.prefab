@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target:
-  - {fileID: 524477433027198558, guid: ddf04aee8c4de2849a811c177cd98c23, type: 3}
-  speed: 6
+  - {fileID: 6503337474985930907, guid: e053c19fc4dac354782f953011244d56, type: 3}
+  speed: 8
 --- !u!54 &4277444167809246213
 Rigidbody:
   m_ObjectHideFlags: 0

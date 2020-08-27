@@ -7,8 +7,8 @@ public class openDoor : MonoBehaviour
     public bool turnOnXAxis;
     public GameObject trapDoor;
     public float turnSpeed = 1.0f;
-    public float openAngle = 90.0f;
-    public float openAngleX = 180.0f;
+    public float openAngle;
+    public float openAngleX;
 
     private Quaternion doorOpenZ = Quaternion.identity;
     private Quaternion doorOpenX = Quaternion.identity;

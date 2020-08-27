@@ -4,123 +4,276 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-public class Timer : MonoBehaviour
+namespace PlayerMovement
 {
-    public GameObject textDisplay;
-    public Image whiteArrow;
-    public Image yellowArrow;
-    public Text lavaRising;
 
-    private float startingTime;
-    public float totalTime;
-
-    public float timer2 = 0f;
-    private float seconds;
-
-    public bool useEventTimer = true;
-
-    public flashTimer ft;
-
-    public ActivateButton[] activateButton;
-    public RaiseFloor raiseFloor;
-    // Start is called before the first frame update
-
-    void Start()
+    public class Timer : MonoBehaviour
     {
-        startingTime = totalTime;
-        whiteArrow.enabled = false;
-        yellowArrow.enabled = false;
-        lavaRising.enabled = false;
-    }
+        public PlayerBlendMovement control;
 
-    
-    // Update is called once per frame
-    void Update()
-    {
-        totalTime -= Time.deltaTime;
+        public GameObject textDisplay;
+        public Image whiteArrow;
+        public Image yellowArrow;
+        public Image whiteArrowDown;
+        public Image yellowArrowDown;
+        public Text lavaRising;
+        public Text lavaSinking;
+        public Image panel;
+        private float startingTime;
+        public float totalTime;
 
-        seconds = (int)(totalTime % 60);
+        public float timer2 = 0f;
+        private float seconds;
 
-        if (useEventTimer)
-        {
-            raiseFloor.moveFloor = false;
-           
-            if (seconds <= 0 )
-            {
-                totalTime = startingTime; //total time = 11
-                useEventTimer = false;
-            }
+
+        public bool speedUI = false;
+        public Image speedBoost;
+        public Text speedPercentage;
+        public Image speedPanel;
+
+        public bool useEventTimer = true;
+        public bool lowerLavaLevels = false;
        
-        }
-        if(!useEventTimer)
-        {
-            raiseFloor.moveFloor = true;
-            totalTime = 0f;
-         
-            useEventTimer = true;
+
+        public ActivateButtonLavaDown[] activateButtonLavaDown;
+        public ActivateButton[] activateButton;
         
-        }
-        if(totalTime <= 0f)
+
+        public RaiseFloor raiseFloor;
+        // Start is called before the first frame update
+
+        void Start()
         {
-            textDisplay.GetComponent<Text>().color = Color.red;
-            lavaRising.enabled = true;
-            yellowArrow.enabled = true;
+            panel.enabled = false;
+            startingTime = totalTime;
             whiteArrow.enabled = false;
-            timer2 = timer2 + Time.deltaTime;
-            if (timer2 >= 0.25)
+            yellowArrow.enabled = false;
+            whiteArrowDown.enabled = false;
+            yellowArrowDown.enabled = false;
+            lavaSinking.enabled = false;
+            lavaRising.enabled = false;
+            speedBoost.enabled = false;
+            speedPercentage.enabled = false;
+        }
+
+
+        // Update is called once per frame
+        void Update()
+        {
+            totalTime -= Time.deltaTime;
+
+            seconds = (int)(totalTime % 60);
+
+            if (useEventTimer)
             {
+                raiseFloor.moveFloorUp = false;
+
+                if (seconds <= 0)
+                {
+                    totalTime = startingTime; //total time = 11
+                    useEventTimer = false;
+                }
+                if (lowerLavaLevels)
+                {
+                    raiseFloor.moveFloorDown = true;
+
+                }
+            }
+            if (!useEventTimer)
+            {
+                totalTime = 0f;
+                raiseFloor.moveFloorDown = false;
+                raiseFloor.moveFloorUp = true;
+                //control.sprintBoost = false;
+              
+          
                 
+            }
+            if (totalTime <= 0f)
+            {
+                textDisplay.GetComponent<Text>().color = Color.red;
+                panel.enabled = true;
+                lavaRising.enabled = true;
+                yellowArrow.enabled = true;
+                whiteArrow.enabled = false;
+                timer2 = timer2 + Time.deltaTime;
+                if (timer2 >= 0.25)
+                {
+
+                    yellowArrow.enabled = false;
+                    whiteArrow.enabled = true;
+                    textDisplay.GetComponent<Text>().enabled = true;
+                }
+                if (timer2 >= 0.5)
+                {
+
+                    whiteArrow.enabled = false;
+                    yellowArrow.enabled = true;
+                    textDisplay.GetComponent<Text>().enabled = false;
+                    timer2 = 0;
+                }
+
+            }
+            if (totalTime > 0f)
+            {
+                panel.enabled = false;
+                lavaRising.enabled = false;
                 yellowArrow.enabled = false;
-                whiteArrow.enabled = true;
+                whiteArrow.enabled = false;
+                textDisplay.GetComponent<Text>().color = Color.black;
                 textDisplay.GetComponent<Text>().enabled = true;
             }
-            if (timer2 >= 0.5)
+            if (raiseFloor.moveFloorDown)
             {
-              
-                whiteArrow.enabled = false;
-                yellowArrow.enabled = true;
-                textDisplay.GetComponent<Text>().enabled = false;
-                timer2 = 0;
+                textDisplay.GetComponent<Text>().color = Color.blue;
+
+                panel.enabled = true;
+                lavaSinking.enabled = true;
+                lavaSinking.GetComponent<Text>().color = Color.blue;
+                yellowArrowDown.enabled = true;
+                whiteArrowDown.enabled = false;
+                timer2 = timer2 + Time.deltaTime;
+                if (timer2 >= 0.25)
+                {
+
+                    yellowArrowDown.enabled = false;
+                    whiteArrowDown.enabled = true;
+                    // textDisplay.GetComponent<Text>().enabled = true;
+                }
+                if (timer2 >= 0.5)
+                {
+
+                    whiteArrowDown.enabled = false;
+                    yellowArrowDown.enabled = true;
+                    //  textDisplay.GetComponent<Text>().enabled = false;
+                    timer2 = 0;
+                }
             }
-            
-        }
-        if(totalTime > 0f)
-        {
-            lavaRising.enabled = false;
-            yellowArrow.enabled = false;
-            whiteArrow.enabled = false;
-            textDisplay.GetComponent<Text>().color = Color.black;
-            textDisplay.GetComponent<Text>().enabled = true;
-        }
-     
-        if(activateButton[0].resetTimer)
-        {
-            totalTime = 11f;
-        }
-        if (activateButton[1].resetTimer)
-        {
-            totalTime = 11f;
-        }
-        if (activateButton[2].resetTimer)
-        {
-            totalTime = 11f;
-        }
-        if (activateButton[3].resetTimer)
-        {
-            totalTime = 11f;
-        }
-        if (activateButton[4].resetTimer)
-        {
-            totalTime = 11f;
-        }
-        if (activateButton[5].resetTimer)
-        {
-            totalTime = 11f;
+            else
+            {
+                whiteArrowDown.enabled = false;
+                yellowArrowDown.enabled = false;
+                lavaSinking.enabled = false;
+                lavaSinking.GetComponent<Text>().color = Color.red;
+                //  panel.enabled = true;
+
+            }
+
+            if(speedUI)
+            {
+                speedPercentage.enabled = true;
+                speedPanel.enabled = true;
+                speedBoost.enabled = true;
+            }
+            else if(!speedUI)
+            {
+                speedPercentage.enabled = false;
+                speedPanel.enabled = false;
+                speedBoost.enabled = false;
+            }
+         
+
+            if (activateButton[0].resetTimer)
+            {
+                useEventTimer = true;
+             
+                totalTime = 11f;
+            }
+            if (activateButton[1].resetTimer)
+            {
+                useEventTimer = true;
+              
+                totalTime = 11f;
+            }
+            if (activateButton[2].resetTimer)
+            {
+                useEventTimer = true;
+              
+                totalTime = 11f;
+            }
+            if (activateButton[3].resetTimer)
+            {
+                useEventTimer = true;
+             
+                totalTime = 11f;
+            }
+            if (activateButton[4].resetTimer)
+            {
+                useEventTimer = true;
+               
+                totalTime = 11f;
+            }
+            if (activateButton[5].resetTimer)
+            {
+                useEventTimer = true;
+                
+                totalTime = 11f;
+            }
+            if (activateButton[6].resetTimer)
+            {
+                useEventTimer = true;
+               
+                totalTime = 11f;
+            }
+            if (activateButton[7].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButton[8].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButton[9].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButton[10].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            //SINK LAVA BUTTONS
+            if (activateButtonLavaDown[0].resetTimer)
+            {
+                useEventTimer = true;
+                
+                totalTime = 11f;
+            }
+            if (activateButtonLavaDown[1].resetTimer)
+            {
+                useEventTimer = true;
+                
+                totalTime = 11f;
+            }
+            if (activateButtonLavaDown[2].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButtonLavaDown[3].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButtonLavaDown[4].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+
+
+            textDisplay.GetComponent<Text>().text = "00:" + seconds.ToString();
         }
 
-     
-        textDisplay.GetComponent<Text>().text = "00:" + seconds.ToString();
     }
-
 }

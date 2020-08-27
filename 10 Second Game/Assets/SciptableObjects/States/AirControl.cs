@@ -37,7 +37,7 @@ namespace PlayerMovement
                     if (!CheckFront(control))
                     {
                         control.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                        control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                       
                     }
                 }
                 //BACK
@@ -46,7 +46,7 @@ namespace PlayerMovement
                     if (!CheckBack(control))
                     {
                         control.transform.Translate(Vector3.back * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                        control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                      
                     }
                   
                 }
@@ -57,7 +57,7 @@ namespace PlayerMovement
                         if (!CheckLeft(control))
                         {
                             control.transform.Translate(Vector3.left * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                            control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                           
                         }
                 }
                 //RIGHT
@@ -66,13 +66,10 @@ namespace PlayerMovement
                     if(!CheckRight(control))
                     {
                         control.transform.Translate(Vector3.right * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                        control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                      
                  
                     }
-                    if(CheckRight(control) && control.Jump)
-                    {
-                        characterState.GetCharacterControl(animator).RIGID_BODY.AddForce(Vector3.left * jumpForce);
-                    }
+                  
 
 
                 }
@@ -81,28 +78,28 @@ namespace PlayerMovement
                 {
                     control.transform.Translate(Vector3.forward * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                     control.transform.Translate(Vector3.left * speed * Time.deltaTime);
-                    control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                  
                 }
                 //RIGHT FORWARD
                 if (control.y > 0f && control.x > 0)
                 {
                     control.transform.Translate(Vector3.forward * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                     control.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                    control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                   
                 }
                 //LEFT BACK
                 if (control.y < 0f && control.x < 0)
                 {
                     control.transform.Translate(Vector3.back * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                     control.transform.Translate(Vector3.left * speed * Time.deltaTime);
-                    control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                   
                 }
                 //RIGHT BACK
                 if (control.y < 0f && control.x > 0)
                 {
                     control.transform.Translate(Vector3.back * speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                     control.transform.Translate(Vector3.right * speed * Time.deltaTime);
-                    control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                
                 }
                 else
                 {

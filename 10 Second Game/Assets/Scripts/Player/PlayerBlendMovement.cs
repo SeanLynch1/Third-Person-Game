@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PlayerMovement
 {
@@ -15,6 +16,8 @@ namespace PlayerMovement
         public bool Grounded;
         public bool GroundedSlope;
         public bool Slide;
+        public bool sprintBoost;
+        public bool speedTimer;
       //  public bool WallDetection;
       //  public bool Falling;
       
@@ -28,6 +31,7 @@ namespace PlayerMovement
         public List<GameObject> BackSpheres = new List<GameObject>();
         public List<GameObject> MiddleSpheres = new List<GameObject>();
 
+        public Timer timer;
 
         public List<Collider> RagdollParts = new List<Collider>();
 
@@ -53,16 +57,9 @@ namespace PlayerMovement
 
             SetRagdollParts();
             SetColliderSpheres();
+        
         }
 
-       /* private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(5f);
-            RIGID_BODY.AddForce(200f * Vector3.up);
-            yield return new WaitForSeconds(0.5f);
-            TurnOnRagdoll();
-
-        }*/
         private void SetRagdollParts()
         {
             Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
@@ -205,14 +202,31 @@ namespace PlayerMovement
 
 
             Move(x, y);
+            if(speedTimer)
+            {
+                timer.speedUI = true;
+                StartCoroutine(speedCoroutine());
+               
+              
+              
+            }
+        
+        }
+        public  IEnumerator speedCoroutine()
+        {
+          
+            yield return new WaitForSeconds(7);
+            sprintBoost = false;
+            timer.speedUI = false;
+            speedTimer = false;
 
         }
-
         public void Move(float x, float y)
         {
             animator.SetFloat("VelX", x);
             animator.SetFloat("VelY", y);
 
         }
+       
     }
 }

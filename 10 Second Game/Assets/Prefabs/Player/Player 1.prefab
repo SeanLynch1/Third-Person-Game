@@ -850,7 +850,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23919854, y: 0.37917662, z: -0.0035724007}
+  m_ConnectedAnchor: {x: -0.23919854, y: 0.37917686, z: -0.003572382}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2002,6 +2002,8 @@ GameObject:
   - component: {fileID: 4614061616863396350}
   - component: {fileID: 8296172667546127876}
   - component: {fileID: 1625662107}
+  - component: {fileID: 1625662108}
+  - component: {fileID: 1625662109}
   m_Layer: 2
   m_Name: Player 1
   m_TagString: Player
@@ -2064,6 +2066,8 @@ MonoBehaviour:
   Grounded: 0
   GroundedSlope: 0
   Slide: 0
+  sprintBoost: 0
+  speedTimer: 0
   animator: {fileID: 0}
   boxCollider: {fileID: 0}
   ColliderEdgePrefab: {fileID: 8496426547861620687, guid: e7a9028c80120ff438357ff87766e987,
@@ -2072,6 +2076,7 @@ MonoBehaviour:
   FrontSpheres: []
   BackSpheres: []
   MiddleSpheres: []
+  timer: {fileID: 1625662107}
   RagdollParts: []
   GravityMultiplier: 0
   PullMultiplier: 0
@@ -2099,7 +2104,7 @@ Rigidbody:
   m_GameObject: {fileID: 4614061616863396353}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.8
+  m_Drag: 0
   m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2144,7 +2149,145 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d718f5201f0df84c80b18226d49c485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  control: {fileID: 4614061616863396348}
+  textDisplay: {fileID: 0}
+  whiteArrow: {fileID: 0}
+  yellowArrow: {fileID: 0}
+  whiteArrowDown: {fileID: 0}
+  yellowArrowDown: {fileID: 0}
+  lavaRising: {fileID: 0}
+  lavaSinking: {fileID: 0}
+  panel: {fileID: 0}
+  totalTime: 11
+  timer2: 0
+  speedUI: 0
+  speedBoost: {fileID: 0}
+  speedPercentage: {fileID: 0}
+  speedPanel: {fileID: 0}
+  useEventTimer: 1
+  lowerLavaLevels: 0
+  activateButtonLavaDown:
+  - {fileID: 0}
+  - {fileID: 0}
+  activateButton:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  raiseFloor: {fileID: 0}
+--- !u!82 &1625662108
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614061616863396353}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7f36c80f8d633664fadf22d1ce1a18c8, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1625662109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614061616863396353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879b0c8b2accc574896038396a4566bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayDown: 0
 --- !u!1 &4625696407191385700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2488,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000027939677, y: 0.20688033, z: 0.000000018626451}
+  m_ConnectedAnchor: {x: 0.00000001816079, y: 0.20688033, z: 0.00000025704503}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -2485,7 +2628,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000023283064, y: 0.4503561, z: -6.9849193e-10}
+  m_ConnectedAnchor: {x: 0.0000000030267984, y: 0.45035598, z: -4.656613e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2807,7 +2950,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.2732926e-11, y: 0.10997332, z: -0.008030584}
+  m_ConnectedAnchor: {x: -1.0004442e-11, y: 0.10997356, z: -0.008030584}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:

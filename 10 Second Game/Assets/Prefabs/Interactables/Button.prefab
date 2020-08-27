@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6121255099361755063}
   - component: {fileID: 8734325370808951269}
   - component: {fileID: 6470442660460514153}
-  - component: {fileID: 5844437726336105792}
+  - component: {fileID: 5254481887312034652}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -204,7 +204,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5844437726336105792
+--- !u!114 &5254481887312034652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,10 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce98beb20624ea48934a0a61a9c760c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  target2: {fileID: 0}
-  speed: 1
+  resetTimer: 0
   timer: {fileID: 0}
+  raiseFloor: {fileID: 0}
 --- !u!1 &8940016525845708830
 GameObject:
   m_ObjectHideFlags: 0

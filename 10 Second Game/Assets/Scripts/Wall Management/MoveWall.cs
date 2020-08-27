@@ -2,46 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MovingWalls {
 
-    public class MoveWall : MonoBehaviour
+
+public class MoveWall : MonoBehaviour
+{
+    public GameObject[] target;
+
+    public float speed;
+
+    
+
+    private int current;
+    // Start is called before the first frame update
+    void Start()
     {
-        public GameObject[] target;
+       
+    }
 
-        public float speed;
+    // Update is called once per frame
+    void Update()
+    {
 
 
-        private int current;
-        // Start is called before the first frame update
-        void Start()
+        if (transform.position != target[current].transform.position)
         {
-
+            Vector3 pos = Vector3.MoveTowards(transform.position, target[current].transform.position, speed * Time.deltaTime);
+            GetComponent<Rigidbody>().MovePosition(pos);
+        }
+        else
+        {
+            current = (current + 1) % target.Length;
         }
 
-        // Update is called once per frame
-        void Update()
+
+    }
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FinalTarget")
         {
-
-
-            if (transform.position != target[current].transform.position)
-            {
-                Vector3 pos = Vector3.MoveTowards(transform.position, target[current].transform.position, speed * Time.deltaTime);
-                GetComponent<Rigidbody>().MovePosition(pos);
-            }
-            else
-            {
-                current = (current + 1) % target.Length;
-            }
-   
-
-        }
-  
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "FinalTarget")
-            {
-                Destroy(this.gameObject);
-            }
+            Destroy(this.gameObject);
         }
     }
 }
