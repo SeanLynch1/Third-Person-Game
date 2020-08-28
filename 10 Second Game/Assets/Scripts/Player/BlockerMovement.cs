@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockerMovement : MonoBehaviour
 {
+    public bool moveOtherWay;
     public bool move;
     public bool flipDirection;
 
@@ -34,6 +35,18 @@ public class BlockerMovement : MonoBehaviour
             v.x -= delta * Mathf.Sin(Time.time * speed);
             transform.position = v;
         }
-      
+        if(moveOtherWay)
+        {
+            Vector3 v = startPos;
+            v.z += delta * Mathf.Sin(Time.time * speed);
+            transform.position = v;
+        }
+        if (moveOtherWay && flipDirection)
+        {
+            Vector3 v = startPos;
+            v.z -= delta * Mathf.Sin(Time.time * speed);
+            transform.position = v;
+        }
+
     }
 }

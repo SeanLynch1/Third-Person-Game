@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-
+    public bool loadEasyGameOverScene;
     
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,15 @@ public class PlayerHealth : MonoBehaviour
     {
         if(other.tag == "Lava")
         {
-            SceneManager.LoadScene(4);
+            if(loadEasyGameOverScene)
+            {
+                SceneManager.LoadScene(5);
+            }
+            if(!loadEasyGameOverScene)
+            {
+                SceneManager.LoadScene(4);
+            }
+           
         }
     }
 
