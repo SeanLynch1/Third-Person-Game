@@ -8,6 +8,14 @@ TagManager:
   - FinalTarget
   - FinalTargetLava
   - movingWall
+  - AskPlayerToMove
+  - AskPlayerToSprint
+  - AskPlayerToJump
+  - AskPlayerToHighJump
+  - HighJumpComplete
+  - Begin Introduction
+  - Begin Game
+  - Lava
   layers:
   - Default
   - TransparentFX

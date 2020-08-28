@@ -45,6 +45,7 @@ namespace PlayerMovement
 
         private void OnTriggerEnter(Collider other)
         {
+          
             if (other.tag == "FinalTargetLava")
             {
                 Destroy(this.gameObject);

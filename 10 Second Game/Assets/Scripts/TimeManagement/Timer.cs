@@ -11,6 +11,7 @@ namespace PlayerMovement
     {
         public PlayerBlendMovement control;
 
+        public Image FadeIn;
         public GameObject textDisplay;
         public Image whiteArrow;
         public Image yellowArrow;
@@ -54,6 +55,10 @@ namespace PlayerMovement
             lavaRising.enabled = false;
             speedBoost.enabled = false;
             speedPercentage.enabled = false;
+
+            FadeIn.canvasRenderer.SetAlpha(1.0f);
+            FadeIn.enabled = true;
+            FadeIn.CrossFadeAlpha(0, 4f, false);
         }
 
 
@@ -239,6 +244,24 @@ namespace PlayerMovement
 
                 totalTime = 11f;
             }
+            if (activateButton[11].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButton[12].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButton[13].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
             //SINK LAVA BUTTONS
             if (activateButtonLavaDown[0].resetTimer)
             {
@@ -265,6 +288,12 @@ namespace PlayerMovement
                 totalTime = 11f;
             }
             if (activateButtonLavaDown[4].resetTimer)
+            {
+                useEventTimer = true;
+
+                totalTime = 11f;
+            }
+            if (activateButtonLavaDown[5].resetTimer)
             {
                 useEventTimer = true;
 

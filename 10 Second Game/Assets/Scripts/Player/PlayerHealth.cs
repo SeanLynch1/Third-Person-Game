@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int Health;
+
     
     // Start is called before the first frame update
     void Start()
@@ -15,15 +16,14 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HealthBar();
-        Debug.Log(Health);
+     
     }
-
-    public void HealthBar()
+    public void OnTriggerEnter(Collider other)
     {
-        if(Health == 0)
+        if(other.tag == "Lava")
         {
-            Destroy(this.gameObject);
+            SceneManager.LoadScene(4);
         }
     }
+
 }

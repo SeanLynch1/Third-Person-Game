@@ -14,7 +14,7 @@ public class openDoor : MonoBehaviour
     private Quaternion doorOpenX = Quaternion.identity;
 
 
-    private bool opening = false;
+    public bool opening = false;
     
 
     // Start is called before the first frame update

@@ -3082,7 +3082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776749ee43a7c5c41b9744fa1ad30423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
 --- !u!114 &4021921421828024583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3096,6 +3095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 8635877277925247584}
+  FadeIn: {fileID: 0}
   textDisplay: {fileID: 0}
   whiteArrow: {fileID: 0}
   yellowArrow: {fileID: 0}

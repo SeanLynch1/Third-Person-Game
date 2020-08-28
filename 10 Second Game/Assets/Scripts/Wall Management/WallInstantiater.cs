@@ -6,8 +6,8 @@ namespace MovingWalls
 {
     public class WallInstantiater : MonoBehaviour
     {
-        public float Timer;
-        
+        public float beginTime;
+        public float timeInterval;
         GameObject MovingWallInstantiater;
         public GameObject[] movingWalls;
         private int current;
@@ -20,17 +20,17 @@ namespace MovingWalls
         // Update is called once per frame
         void Update()
         {
-            Timer -= Time.deltaTime;
+            beginTime -= Time.deltaTime;
            
            // for (int i = 0; i <= current; i++)
            // {
-                if (Timer <= 0f)
+                if (beginTime <= 0f)
                 {
 
                     MovingWallInstantiater = Instantiate(movingWalls[current], this.gameObject.transform.position, transform.rotation) as GameObject;
                
                     current = current + 1;
-                    Timer = 6f;
+                    beginTime = timeInterval;
                 }
          
                 if(current == movingWalls.Length)
