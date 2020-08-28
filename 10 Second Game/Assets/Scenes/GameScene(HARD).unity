@@ -44765,17 +44765,17 @@ PrefabInstance:
     - target: {fileID: 4720781184778173326, guid: ead70d9b6a2fce049a02c6604ef8c904,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4720781184778173326, guid: ead70d9b6a2fce049a02c6604ef8c904,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 64.9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4720781184778173326, guid: ead70d9b6a2fce049a02c6604ef8c904,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4720781184778173326, guid: ead70d9b6a2fce049a02c6604ef8c904,
         type: 3}
