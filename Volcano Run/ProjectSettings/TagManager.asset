@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Pendulum
+  - FinalTarget
+  - FinalTargetLava
+  - movingWall
+  - AskPlayerToMove
+  - AskPlayerToSprint
+  - AskPlayerToJump
+  - AskPlayerToHighJump
+  - HighJumpComplete
+  - Begin Introduction
+  - Begin Game
+  - Lava
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Sphere
+  - AirControlLand
+  - Lava
+  - RockLayer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
